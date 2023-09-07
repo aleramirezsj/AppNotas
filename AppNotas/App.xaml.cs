@@ -1,4 +1,7 @@
-﻿namespace AppNotas;
+﻿
+using AppNotas.Views.Flyout;
+
+namespace AppNotas;
 
 public partial class App : Application
 {

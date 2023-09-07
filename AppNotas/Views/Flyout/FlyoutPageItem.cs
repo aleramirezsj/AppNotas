@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppNotas
+namespace AppNotas.Views.Flyout
 {
     public class FlyoutPageItem
     {

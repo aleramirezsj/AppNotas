@@ -1,4 +1,6 @@
-namespace AppNotas;
+using AppNotas.Views.Flyout;
+
+namespace AppNotas.Views.Flyout;
 
 public partial class EjemploFlyoutPage : FlyoutPage
 {
