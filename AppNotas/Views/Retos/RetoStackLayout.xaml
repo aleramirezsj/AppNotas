@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppNotas.Views.Retos.RetoStackLayout"
+             Title="Reto StackLayout"
+             BackgroundColor="Black">
+    <VerticalStackLayout VerticalOptions="Center">
+        <Frame CornerRadius="20"
+               Margin="20"
+               HeightRequest="500"
+               BackgroundColor="White">
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Frame BackgroundColor="White" IsClippedToBounds="True" Padding="0" CornerRadius="15" HorizontalOptions="Start">
+                    <Image Source="persona.jpg" HeightRequest="200" WidthRequest="200" Aspect="AspectFill"/>
+                </Frame>
+                <Label Text="Juan Perez" FontSize="Header" FontAttributes="Bold" Padding="0" TextColor="Black"/>
+                <Label Text="Analista IT" FontSize="Large" FontAttributes="Italic" Padding="0" TextColor="DarkGray"/>
+                <Label Text="3ro Desarrollo de Software" FontSize="Medium" FontAttributes="Bold" TextColor="Black" Padding="0"/>
+            </VerticalStackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>

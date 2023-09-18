@@ -1,5 +1,7 @@
 ﻿
 using AppNotas.Views.Flyout;
+using AppNotas.Views.Notas;
+using AppNotas.Views.Retos;
 using AppNotas.Views.TabbedPages;
 
 namespace AppNotas;
@@ -10,6 +12,6 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new EjemploTabbedPage();
+		MainPage = new ListaNotasPage();
 	}
 }
