@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppNotas.Views.Notas.ListaNotasPage"
-             Title="ListaNotasPage">
+             x:Class="AppNotas.Views.Peliculas.ListaPeliculasPage"
+             Title="ListaPeliculasPage">
     <VerticalStackLayout>
         <Label 
-            Text="Lista de Notas"
+            Text="Lista de Películas"
             VerticalOptions="Start" 
             HorizontalOptions="Center" />
         <ScrollView>
-            <ListView x:Name="NotasListView"
+            <ListView x:Name="PeliculasListView"
                       SelectionMode="Single"
-                      SelectedItem="{Binding NotaSeleccionada}">
+                      SelectedItem="{Binding PeliculaSeleccionada}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Titulo}"
-                                      Detail="{Binding Contenido}"/>
+                        <TextCell Text="{Binding nombre}"
+                                      Detail="{Binding genero}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

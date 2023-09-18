@@ -1,52 +1,35 @@
 using AppNotas.Models;
+using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace AppNotas.Views.Notas;
 
-public partial class ListaNotasPage : ContentPage, INotifyPropertyChanged
-{
-    public event PropertyChangedEventHandler PropertyChanged;
-    
-    private ObservableCollection<Nota> notas;
+public partial class ListaNotasPage : ContentPage
+{    
+    public ObservableCollection<Nota> Notas { get; set; }
 
-    public ObservableCollection<Nota> Notas
-    {
-        get { return notas; }
-        set { notas = value;
-            //OnPropertyChanged();
-        }
-    }
-
+    //creamos un cliente Http para trabajar con una API desde y hacia internet
+    HttpClient clienteHttp = new HttpClient();
+    //URL de nuestra API
+    string urlApi = "https://webnotasale.azurewebsites.net/api/apinotas";
     Nota NotaSeleccionada { get; set; }
-	Command ObtenerNotasCommand { get;  }
     public ListaNotasPage()
 	{
 		InitializeComponent();
 		Notas = new ObservableCollection<Nota>();
-		ObtenerNotasCommand = new Command(ObtenerNotas);
-        
-	}
-    protected override void OnAppearing()
-    {
+
+        //configuramos que trabajará con respuestas JSON
+        clienteHttp.DefaultRequestHeaders.Add("Accept", "application/json");
+
         ObtenerNotas(this);
     }
-    private void ObtenerNotas(object obj)
+    private async Task ObtenerNotas(object obj)
     {
-        Notas.Add(new Nota() { Id=1, Titulo="Nota 1", Contenido="texto de la nota 1"});
+        var respuesta = await clienteHttp.GetStringAsync(urlApi);
+        Notas= JsonConvert.DeserializeObject<ObservableCollection<Nota>>(respuesta);
+        
         NotasListView.ItemsSource = Notas;
-    }
-
-    //CallerMemberName nos devuelve el nombre de la propiedad que fue modificada
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        /*Este código que comprueba si un valor es nulo se puede hacer
-        * con una sola linea con la forma ?.Invoke
-        if (PropertyChanged != null)
-        {
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }*/
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

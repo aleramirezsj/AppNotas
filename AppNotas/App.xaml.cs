@@ -1,6 +1,7 @@
 ﻿
 using AppNotas.Views.Flyout;
 using AppNotas.Views.Notas;
+using AppNotas.Views.Peliculas;
 using AppNotas.Views.Retos;
 using AppNotas.Views.TabbedPages;
 
@@ -12,6 +13,6 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new ListaNotasPage();
+		MainPage = new ListaPeliculasPage();
 	}
 }
