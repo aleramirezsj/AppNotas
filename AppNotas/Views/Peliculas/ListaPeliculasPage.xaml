@@ -9,16 +9,40 @@
             VerticalOptions="Start" 
             HorizontalOptions="Center" />
         <ScrollView>
-            <ListView x:Name="PeliculasListView"
+            <CollectionView x:Name="PeliculasListView"
                       SelectionMode="Single"
                       SelectedItem="{Binding PeliculaSeleccionada}">
-                <ListView.ItemTemplate>
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding nombre}"
-                                      Detail="{Binding genero}"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding portada_url}" 
+                                   Grid.RowSpan="3"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   HeightRequest="100"></Image>
+                            <Label FontSize="28"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   Text="{Binding nombre}"/>
+                            <Label Text="{Binding genero}"
+                                   Grid.Row="1"
+                                   Grid.Column="1"/>
+                            <Label Text="{Binding sinopsis}"
+                                   Grid.Row="2"
+                                   Grid.Column="1"/>
+                        </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </ScrollView>
     </VerticalStackLayout>
 </ContentPage>

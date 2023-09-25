@@ -75,6 +75,9 @@
 	  <MauiXaml Update="Views\Notas\ListaNotasPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Notas\NotasView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Peliculas\ListaPeliculasPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
