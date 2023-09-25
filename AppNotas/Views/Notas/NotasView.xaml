@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:AppNotas.ViewModels.Notas"
              x:Class="AppNotas.Views.Notas.NotasView"
              Title="NotasView">
+    <ContentPage.BindingContext>
+        <viewModels:NotasViewModel/>
+    </ContentPage.BindingContext>
     <VerticalStackLayout>
         <Label 
-            Text="Lista de Notas"
+            Text="Lista de Notas(con ViewModel)"
             VerticalOptions="Start" 
             HorizontalOptions="Center" />
+        <ActivityIndicator IsRunning="{Binding ActividadRealizandose}"/>
         <ScrollView>
             <ListView x:Name="NotasListView"
                       ItemsSource="{Binding Notas}"
@@ -23,5 +28,9 @@
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollView>
+        <Button Text="Editar" WidthRequest="150" Command="{Binding EditarNotaCommand}" />
+        <Button Text="Eliminar" WidthRequest="150" Command="{Binding EliminarNotaCommand}"/>
+        <Button Text="Agregar" WidthRequest="150" Command="{Binding AgregarNotaCommand}"/>
+
     </VerticalStackLayout>
 </ContentPage>
