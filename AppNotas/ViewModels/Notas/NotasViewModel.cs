@@ -1,5 +1,6 @@
 ﻿using AppNotas.Class;
 using AppNotas.Models;
+using AppNotas.Repositories;
 using AppNotas.Utils;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json;
@@ -15,6 +16,8 @@ namespace AppNotas.ViewModels.Notas
     public class NotasViewModel : ObjetoNotificacion
     {
         string urlApi = "https://webnotasale.azurewebsites.net/api/apinotas";
+
+        NotasRepository notasRepository = new NotasRepository();
 
         private bool actividadRealizandose=false;
 
@@ -90,8 +93,7 @@ namespace AppNotas.ViewModels.Notas
             if (respuesta)
             {
                 ActividadRealizandose = true;
-                var clienteHttp = Helper.ObtenerClienteHttp();
-                await clienteHttp.DeleteAsync(urlApi + "/" + notaSeleccionada.Id);
+                await notasRepository.RemoveAsync(notaSeleccionada.Id);
                 ObtenerNotas(this);
                 ActividadRealizandose=false;
             }
@@ -104,9 +106,12 @@ namespace AppNotas.ViewModels.Notas
 
         private async void ObtenerNotas(object obj)
         {
-            var clienteHttp = Helper.ObtenerClienteHttp();
-            var respuesta = await clienteHttp.GetStringAsync(urlApi);
-            Notas = JsonConvert.DeserializeObject<ObservableCollection<Nota>>(respuesta); 
+            Notas.Clear();
+            var notas = await notasRepository.GetAllAsync(); 
+            foreach (var nota in notas)
+            {
+                Notas.Add(nota);
+            }
         }
     }
 }
