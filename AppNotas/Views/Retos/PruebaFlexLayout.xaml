@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppNotas.Views.Retos.PruebaFlexLayout"
+             Title="PruebaFlexLayout">
+    <VerticalStackLayout>
+        <FlexLayout JustifyContent="SpaceBetween">
+            <Button Text="Primero" BackgroundColor="Gold"/>
+            <Button Text="Segundo" BackgroundColor="DarkGreen"/>
+            <Button Text="Tercero" BackgroundColor="Fuchsia"/>
+            
+        </FlexLayout>
+    </VerticalStackLayout>
+</ContentPage>

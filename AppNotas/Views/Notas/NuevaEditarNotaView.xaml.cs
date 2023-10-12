@@ -12,7 +12,6 @@ public partial class NuevaEditarNotaView : ContentPage
     public NuevaEditarNotaView(Nota notaAEditar)
     {
         InitializeComponent();
-        lblTitulo.Text = notaAEditar.Titulo;
-        lblContenido.Text = notaAEditar.Contenido;
+        
     }
 }

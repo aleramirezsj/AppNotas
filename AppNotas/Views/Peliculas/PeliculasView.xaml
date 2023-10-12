@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:AppNotas.ViewModels.Peliculas"
+             x:Class="AppNotas.Views.Peliculas.PeliculasView"
+             Title="PeliculasView">
+    <ContentPage.BindingContext>
+        <viewModels:PeliculasViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label 
+        Text="Lista de Peliculas(con ViewModel)"
+        VerticalOptions="Start" 
+        HorizontalOptions="Center" />
+            <ActivityIndicator IsRunning="{Binding ActividadRealizandose}"/>
+
+            <CollectionView x:Name="PeliculasCollectionView" 
+                  ItemsSource="{Binding Peliculas}"
+                  SelectionMode="Single"
+                  SelectedItem="{Binding PeliculaSeleccionada}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="*,*,2*" ColumnDefinitions="*,2*">
+                            <Image Source="{Binding portada_url}" 
+                                   Grid.RowSpan="3"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   HeightRequest="100"></Image>
+                            <Label FontSize="28"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   Text="{Binding nombre}"/>
+                            <Label Text="{Binding genero}"
+                                   Grid.Row="1"
+                                   Grid.Column="1"/>
+                            <Label Text="{Binding sinopsis}"
+                                   Grid.Row="2"
+                                   Grid.Column="1"/>
+                        </Grid>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Editar" WidthRequest="150" Command="{Binding EditarPeliculaCommand}" />
+            <Button Text="Eliminar" WidthRequest="150" Command="{Binding EliminarPeliculaCommand}"/>
+            <Button Text="Agregar" WidthRequest="150" Command="{Binding AgregarPeliculaCommand}"/>
+        </VerticalStackLayout>
+            
+    </ScrollView>
+
+        
+
+</ContentPage>

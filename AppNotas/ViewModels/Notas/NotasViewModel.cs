@@ -104,7 +104,7 @@ namespace AppNotas.ViewModels.Notas
             WeakReferenceMessenger.Default.Send(new MiMensaje("EditarNota") { NotaAEditar=NotaSeleccionada});
         }
 
-        private async void ObtenerNotas(object obj)
+        public async void ObtenerNotas(object obj)
         {
             Notas.Clear();
             var notas = await notasRepository.GetAllAsync(); 

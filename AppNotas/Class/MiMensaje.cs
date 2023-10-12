@@ -11,6 +11,8 @@ namespace AppNotas.Class
     public class MiMensaje : ValueChangedMessage<string>
     {
         public Nota NotaAEditar { get; set; }
+        public Pelicula PeliculaAEditar { get; set; }
+
         public MiMensaje(string value) : base(value)
         {
 
