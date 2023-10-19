@@ -3,12 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppNotas.Views.Retos.PruebaFlexLayout"
              Title="PruebaFlexLayout">
-    <VerticalStackLayout>
-        <FlexLayout JustifyContent="SpaceBetween">
-            <Button Text="Primero" BackgroundColor="Gold"/>
-            <Button Text="Segundo" BackgroundColor="DarkGreen"/>
-            <Button Text="Tercero" BackgroundColor="Fuchsia"/>
-            
-        </FlexLayout>
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <FlexLayout Direction="Column">
+                <Label FontSize="30" HorizontalTextAlignment="Center">Elija un producto</Label>
+                <Frame CornerRadius="20" Margin="20,10">
+                    <FlexLayout Direction="Column" AlignItems="Center">
+                        <Label FontSize="22">Coca Cola 2Lts</Label>
+                        <Image Source="contacts.png" Aspect="AspectFill"/>
+                        <Label Style="{StaticResource LabelPrecio}">$1350</Label>
+                    </FlexLayout>
+                </Frame>
+            </FlexLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

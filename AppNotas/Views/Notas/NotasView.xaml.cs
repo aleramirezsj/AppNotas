@@ -9,6 +9,7 @@ public partial class NotasView : ContentPage
 	public NotasView()
 	{
 		InitializeComponent();
+        //código para preparar la recepción de mensajes y la llamada al método RecibirMensaje
         WeakReferenceMessenger.Default.Register<MiMensaje>(this, (r, m) =>
         {
             AlRecibirMensaje(m);

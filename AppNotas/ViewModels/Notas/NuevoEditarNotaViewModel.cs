@@ -47,7 +47,7 @@ namespace AppNotas.ViewModels.Notas
 
         private void Cancelar(object obj)
         {
-            throw new NotImplementedException();
+            WeakReferenceMessenger.Default.Send(new MiMensaje("VolverANotasView"));
         }
 
         private async void Guardar(object obj)
@@ -62,6 +62,12 @@ namespace AppNotas.ViewModels.Notas
                 await notasRepository.UpdateAsync(titulo, contenido, NotaEditada.Id);
             }
             WeakReferenceMessenger.Default.Send(new MiMensaje("VolverANotasView"));
+        }
+
+        public void CargarDatosEnPantalla()
+        {
+            Titulo = NotaEditada.Titulo;
+            Contenido = NotaEditada.Contenido;
         }
     }
 }
