@@ -10,16 +10,28 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Grid RowDefinitions="2*,2*,*" ColumnDefinitions="*,*">
-            <Label Grid.Row="0" Grid.Column="0">Usuario:</Label>
-            <Entry Grid.Row="0" Grid.Column="1" x:Name="txtUsuario"></Entry>
+            <Label Grid.Row="0" Grid.Column="0" 
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Margin="40,20">Usuario:</Label>
+            <Entry Grid.Row="0" Grid.Column="1" 
+                   x:Name="txtUsuario"
+                   Margin="10,20,100,20"></Entry>
 
-            <Label Grid.Row="1" Grid.Column="0">Contraseña:</Label>
-            <Entry Grid.Row="1" Grid.Column="1" x:Name="txtPassword"></Entry>
+            <Label Grid.Row="1" Grid.Column="0" 
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Margin="40,20">Contraseña:</Label>
+            <Entry Grid.Row="1" Grid.Column="1" 
+                   x:Name="txtPassword"
+                   Margin="10,20,100,20"></Entry>
 
             <Button Text="Iniciar sesión"
                     x:Name="btnIniciarSesion"
                     Grid.Row="2" Grid.Column="0"
                     Clicked="btnIniciarSesion_Clicked"
+                    Grid.ColumnSpan="2"
+                    Margin="100,10"
                     ></Button>
         </Grid>
     </VerticalStackLayout>
