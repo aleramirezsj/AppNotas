@@ -36,6 +36,17 @@ namespace AppNotas.ViewModels.Notas
 			}
 		}
 
+        private ImageSource foto;
+
+        public ImageSource Foto
+        {
+            get { return foto; }
+            set { foto = value; 
+                OnPropertyChanged();
+            }
+        }
+
+
         public Command GuardarCommand { get;  }
         public Command CancelarCommand { get; }
 
@@ -68,6 +79,8 @@ namespace AppNotas.ViewModels.Notas
         {
             Titulo = NotaEditada.Titulo;
             Contenido = NotaEditada.Contenido;
+            if(NotaEditada.Imagen!=null && NotaEditada.Imagen!=Array.Empty<byte>())
+                Foto=Helper.convertirBytesAImagen(NotaEditada.Imagen);
         }
     }
 }

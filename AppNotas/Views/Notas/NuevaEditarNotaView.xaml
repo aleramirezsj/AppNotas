@@ -24,6 +24,8 @@
            Placeholder="Ingrese el Contenido"
            Text="{Binding Contenido}"
             />
+        <Image Source="{Binding Foto}" HeightRequest="200" Margin="30" x:Name="ControlImagen"/>
+        <Button Text="Tomar foto" x:Name="btnTomarFoto" Clicked="btnTomarFoto_Clicked"/>
         <Button Text="Guardar" WidthRequest="150" Command="{Binding GuardarCommand}" />
         <Button Text="Cancelar" WidthRequest="150" Command="{Binding CancelarCommand}"/>
     </VerticalStackLayout>
