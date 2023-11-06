@@ -13,7 +13,7 @@
             VerticalOptions="Start" 
             HorizontalOptions="Center" />
         <ActivityIndicator IsRunning="{Binding ActividadRealizandose}"/>
-        <ScrollView>
+        <ScrollView HeightRequest="300" HorizontalOptions="Center">
             <ListView x:Name="NotasListView"
                       ItemsSource="{Binding Notas}"
                       SelectionMode="Single"
@@ -31,6 +31,8 @@
         <Button Text="Editar" WidthRequest="150" Command="{Binding EditarNotaCommand}" />
         <Button Text="Eliminar" WidthRequest="150" Command="{Binding EliminarNotaCommand}"/>
         <Button Text="Agregar" WidthRequest="150" Command="{Binding AgregarNotaCommand}"/>
-
+        <Button Text="Cerrar sesión" WidthRequest="150" 
+                x:Name="btnCerrarSesion"
+                Clicked="btnCerrarSesion_Clicked" />
     </VerticalStackLayout>
 </ContentPage>

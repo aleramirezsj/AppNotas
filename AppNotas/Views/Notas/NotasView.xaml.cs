@@ -1,14 +1,19 @@
 using AppNotas.Class;
 using AppNotas.ViewModels.Notas;
 using CommunityToolkit.Mvvm.Messaging;
+using Firebase.Auth.Repository;
 
 namespace AppNotas.Views.Notas;
 
 public partial class NotasView : ContentPage
 {
-	public NotasView()
+    private FileUserRepository _userRepository;
+    public NotasView()
 	{
 		InitializeComponent();
+
+        _userRepository = new FileUserRepository("AppNotas");
+
         //código para preparar la recepción de mensajes y la llamada al método RecibirMensaje
         WeakReferenceMessenger.Default.Register<MiMensaje>(this, (r, m) =>
         {
@@ -35,10 +40,16 @@ public partial class NotasView : ContentPage
     {
         base.OnAppearing();
         var viewmodel = this.BindingContext as NotasViewModel;
-        if (viewmodel.NotaSeleccionada != null)
-        {
+        //if (viewmodel.NotaSeleccionada != null)
+        //{
             viewmodel.ObtenerNotas(this);
             viewmodel.NotaSeleccionada = null;
-        }
+        //}
+    }
+
+    private void btnCerrarSesion_Clicked(object sender, EventArgs e)
+    {
+        _userRepository.DeleteUser();
+        Navigation.PopAsync();
     }
 }

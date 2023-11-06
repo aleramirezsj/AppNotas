@@ -27,7 +27,9 @@ public static class MauiProgram
 			AuthDomain= "chatisp20.firebaseapp.com",
 			Providers= new FirebaseAuthProvider[]
 			{
-				new EmailProvider()			}
+				new EmailProvider(),
+				new GoogleProvider().AddScopes("email")
+            }
         }));
 #endif
 

@@ -16,8 +16,8 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		//MainPage = new NavigationPage(new IniciarSesionView(firebaseAuthClient));
-		MainPage = new EjemploFlyoutPage();
+		MainPage = new NavigationPage(new IniciarSesionView(firebaseAuthClient));
+		//MainPage = new EjemploFlyoutPage();
 
 
     }

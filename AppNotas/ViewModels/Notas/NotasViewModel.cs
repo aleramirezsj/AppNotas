@@ -67,7 +67,7 @@ namespace AppNotas.ViewModels.Notas
             EditarNotaCommand = new Command(EditarNota,PermitirEditar);
             EliminarNotaCommand = new Command(EliminarNota, PermitirEliminar);
             AgregarNotaCommand = new Command(AgregarNota);
-			ObtenerNotas(this);
+			//ObtenerNotas(this);
         }
 
 
