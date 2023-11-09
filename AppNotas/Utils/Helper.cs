@@ -16,6 +16,7 @@ namespace AppNotas.Utils
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             return client;
         }
+
         public static HttpClient ObtenerClienteHttp(string apikey)
         {
             HttpClient client = new HttpClient();
@@ -24,6 +25,7 @@ namespace AppNotas.Utils
             client.DefaultRequestHeaders.Add("x-apikey", apikey);
             return client;
         }
+
         public static ImageSource convertirBytesAImagen(Byte[] arregloImg)
         {
             MemoryStream imagenStream = new MemoryStream(arregloImg);
@@ -46,6 +48,16 @@ namespace AppNotas.Utils
 
             return imagenBytes;
         }
+        public static async Task<byte[]> ConvertImageSourceToBytesAsync(ImageSource imageSource)
+        {
+            Stream stream = await ((StreamImageSource)imageSource).Stream(CancellationToken.None);
+            byte[] bytesAvailable = new byte[stream.Length];
+            stream.Read(bytesAvailable, 0, bytesAvailable.Length);
+
+            return bytesAvailable;
+        }
+
 
     }
+
 }

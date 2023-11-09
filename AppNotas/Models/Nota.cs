@@ -10,15 +10,7 @@ namespace AppNotas.Models
         public string Contenido { get; set; } = string.Empty;
         public byte[]? Imagen { get; set; }
 
-        [NotMapped]
-        public ImageSource Foto {
-            get
-            {
-                return Helper.convertirBytesAImagen(Imagen);
-            }
 
-            
-        }
 
         public override string ToString()
         {

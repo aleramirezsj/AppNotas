@@ -19,13 +19,15 @@ namespace AppNotas.Repositories
         /// <param name="titulo"></param>
         /// <param name="contenido"></param>
         /// <returns></returns>
-        public async Task<Nota> AddAsync(string titulo, string contenido)
+        public async Task<Nota> AddAsync(string titulo, string contenido, byte[] imagen)
         {
             //creamos un objeto del tipo Nota con los parámetros que llegan
+            //var arregloImagen = await Helper.ConvertImageSourceToBytesAsync(imagen);
             Nota nota = new Nota()
             {
                 Titulo = titulo,
-                Contenido = contenido
+                Contenido = contenido,
+                Imagen = imagen
             };
 
             //creamos un objeto HttpClient
@@ -49,13 +51,15 @@ namespace AppNotas.Repositories
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateAsync(string titulo, string contenido, int id)
+        public async Task<bool> UpdateAsync(string titulo, string contenido, byte[] imagen, int id)
         {
             HttpClient client = Helper.ObtenerClienteHttp();
+            //var arregloImagen = await Helper.ConvertImageSourceToBytesAsync(imagen);
             Nota nota = new Nota()
             {
                 Id = id,
                 Titulo = titulo,
+                Imagen = imagen,
                 Contenido = contenido,
             };
             var response = await client.PutAsync(Url + "/" + id, new StringContent(JsonConvert.SerializeObject(nota), Encoding.UTF8, "application/json"));

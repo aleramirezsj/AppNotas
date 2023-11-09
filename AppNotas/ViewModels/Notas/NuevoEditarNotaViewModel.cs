@@ -35,8 +35,10 @@ namespace AppNotas.ViewModels.Notas
 				OnPropertyChanged();
 			}
 		}
+        public byte[] Imagen { get; set; }
 
         private ImageSource foto;
+
 
         public ImageSource Foto
         {
@@ -46,7 +48,7 @@ namespace AppNotas.ViewModels.Notas
             }
         }
 
-
+        public Command CapturarFotoCommand { get;  }
         public Command GuardarCommand { get;  }
         public Command CancelarCommand { get; }
 
@@ -54,8 +56,21 @@ namespace AppNotas.ViewModels.Notas
         {
 			GuardarCommand = new Command(Guardar);
 			CancelarCommand = new Command(Cancelar);
+            CapturarFotoCommand = new Command(CapturarFoto);
         }
 
+        private async void CapturarFoto(object obj)
+        {
+            if (MediaPicker.Default.IsCaptureSupported)
+            {
+                FileResult photo = await MediaPicker.Default.CapturePhotoAsync().ConfigureAwait(true);
+                if(photo != null) { 
+                    Foto = ImageSource.FromStream(() => photo.OpenReadAsync().Result);
+                    Imagen=await Helper.ConvertImageSourceToBytesAsync(Foto);
+                }
+                
+            }
+        }
         private void Cancelar(object obj)
         {
             WeakReferenceMessenger.Default.Send(new MiMensaje("VolverANotasView"));
@@ -65,12 +80,10 @@ namespace AppNotas.ViewModels.Notas
         {
             if(NotaEditada==null)
             {
-                Nota nota=await notasRepository.AddAsync(titulo, contenido);
-                Debug.Print(">>>>>>>>>>>> AGREGANDO UNA NOTA");
-                Debug.Print(nota.ToString());
+                Nota nota=await notasRepository.AddAsync(titulo, contenido,Imagen);
             } else
             {
-                await notasRepository.UpdateAsync(titulo, contenido, NotaEditada.Id);
+                await notasRepository.UpdateAsync(titulo, contenido, Imagen,NotaEditada.Id);
             }
             WeakReferenceMessenger.Default.Send(new MiMensaje("VolverANotasView"));
         }
@@ -79,6 +92,7 @@ namespace AppNotas.ViewModels.Notas
         {
             Titulo = NotaEditada.Titulo;
             Contenido = NotaEditada.Contenido;
+            Imagen = NotaEditada.Imagen;
             if(NotaEditada.Imagen!=null && NotaEditada.Imagen!=Array.Empty<byte>())
                 Foto=Helper.convertirBytesAImagen(NotaEditada.Imagen);
         }
